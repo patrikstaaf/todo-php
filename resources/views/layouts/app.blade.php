@@ -7,8 +7,34 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>To-do</title>
 </head>
-<body>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+<body class="h-full">
+    <nav class="p-6 bg-white flex justify-between">
+        <ul class="flex items-center">
+            <li>
+                <a href="" class="p-3">Home</a>
+            </li>
+            <li>
+                <a href="" class="p-3">Dashboard</a>
+            </li>
+            <li>
+                <a href="" class="p-3">Lists</a>
+            </li>
+        </ul>
+        <ul class="flex items-center">
+            <li>
+                <a href="" class="p-3">Patrik Staaf</a>
+            </li>
+            <li>
+                <a href="" class="p-3">Login</a>
+            </li>
+            <li>
+                <a href="" class="p-3">Register</a>
+            </li>
+            <li>
+                <a href="" class="p-3">Log out</a>
+            </li>
+        </ul>
+    </nav>
     @yield('content')
 </body>
 </html>
