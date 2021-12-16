@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>To-do</title>
+    <title>To-do app</title>
 </head>
 <body class="h-full">
-    <nav class="p-6 bg-white flex justify-between">
+    <nav class="p-6 bg-white flex justify-between max-w-full">
         <ul class="flex items-center">
             <li>
                 <a href="" class="p-3">Home</a>
