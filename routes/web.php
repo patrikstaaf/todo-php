@@ -8,5 +8,5 @@ Route::get('/lists', function () {
 });
 
 
-// User controller
+// User routes
 Route::get('register', [RegisterController::class, 'create']);
