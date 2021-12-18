@@ -8,6 +8,7 @@
     <title>To-do app</title>
 </head>
 <body class="h-full">
+
     <nav class="p-6 bg-gray-200 flex justify-between max-w-full">
         <ul class="flex items-center">
             <li>
