@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,4 +38,8 @@
     </nav>
     @yield('content')
 </body>
-</html>
+</html> --}}
+
+<x-app-layout title="Layouts">
+Layouts
+</x-app-layout>
