@@ -19,8 +19,8 @@ class CreateTasksTable extends Migration
             $table->text('description')->nullable();
             $table->date('due_date')->nullable();
             $table->boolean('completed')->nullable()->default(false);
-            $table->foreignId('tasks_users_id')->constrained('users');
-            $table->foreignId('tasks_lists_id')->constrained('lists');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('lists_id')->constrained('lists');
             $table->timestamps();
         });
     }
