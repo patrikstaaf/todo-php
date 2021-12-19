@@ -14,15 +14,18 @@
             <li>
                 <a href="/" class="p-3">Home</a>
             </li>
+            @auth
             <li>
                 <a href="{{ route('my-day') }}" class="p-3">My Day</a>
             </li>
             <li>
-                <a href="" class="p-3">Lists</a>
+                <a href="{{ route('lists') }}" class="p-3">Lists</a>
+            </li>
+            <li>
+                <a href="{{ route('tasks') }}" class="p-3">Show all tasks</a>
             </li>
         </ul>
         <ul class="flex items-center">
-            @auth
             <li>
                 <a href="" class="p-3">{{ auth()->user()->email }}</a>
             </li>

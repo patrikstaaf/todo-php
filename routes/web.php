@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 
 // Route::get('/lists', function () {
@@ -35,3 +37,9 @@ Route::post('/login', [LoginController::class, 'store']);
 
 // Logout
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+// Lists
+Route::get('/lists', [ListController::class, 'index'])->name('lists');
+
+// Tasks
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');

@@ -3,9 +3,9 @@
 @section('content')
 <div class="flex justify-center">
     <div class="w-8/12 bg-white p-6 rounded-lg">
-        My Day
+        All tasks
 
-        Here are your tasks that have the deadline of today.
+        Here you will find all your tasks.
     </div>
 </div>
 @endsection
