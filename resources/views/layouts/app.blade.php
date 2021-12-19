@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>To-do app</title>
 </head>
-<body class="h-full">
+<body class="h-full bg-gray-100">
 
-    <nav class="p-6 bg-gray-200 flex justify-between max-w-full">
+    <nav class="p-6 bg-gray-200 flex justify-between max-w-full mb-6">
         <ul class="flex items-center">
             <li>
                 <a href="" class="p-3">Home</a>
@@ -29,7 +29,7 @@
                 <a href="" class="p-3">Login</a>
             </li>
             <li>
-                <a href="" class="p-3">Register</a>
+                <a href="{{ route('register') }}" class="p-3">Register</a>
             </li>
             <li>
                 <a href="" class="p-3">Log out</a>
@@ -38,8 +38,8 @@
     </nav>
     @yield('content')
 </body>
-</html> --}}
+</html>
 
-<x-app-layout title="Layouts">
+{{-- <x-app-layout title="Layouts">
 Layouts
-</x-app-layout>
+</x-app-layout> --}}
