@@ -7,27 +7,46 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['guest']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['guest']);
+    // }
 
     public function index()
     {
         return view('auth.login');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
+        $attributes = request()->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
-            return back()->with('status', 'Invalid login details');
+        // attempt to authenticate and log in the user based on the provided credentials
+
+        if (auth()->attempt($attributes)) {
+            session()->regenerate(); // prevent session fixation
+
+            return redirect('/')->with('success', 'Welcome back.');
         }
 
-        return redirect()->route('my-day');
+        // auth fail
+        return back()->withInput()->withErrors(['email' => 'Invalid login details.']);
     }
+
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
+    //         return back()->withErrors('status', 'Invalid login details');
+    //     }
+
+    //     return redirect()->route('my-day')->with('success', 'Welcome back');
+    // }
 }

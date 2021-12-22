@@ -3,6 +3,10 @@
 @section('content')
 <div class="flex justify-center">
     <div class="w-4/12 bg-white p-6 rounded-lg">
+        <h1 class="text-lg mb-6 w-full font-semibold">Register</h1>
+        <p class="">Requirements:</p>
+        <p class="">Enter a valid email address.</p>
+        <p class="pb-4">Password minimum of 7 characters.</p>
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <div class="mb-4">

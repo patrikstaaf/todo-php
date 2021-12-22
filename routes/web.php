@@ -8,38 +8,45 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 
-// Route::get('/lists', function () {
-//     return view('lists.index');
-// });
 
-// Route::get('/', function () {
-//     return view('lists.index');
-// });
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Make a group for middleware guest? Then no need for middleware in controller
 
-Route::get('/my-day', [DashboardController::class, 'index'])->name('my-day')->middleware('auth');
+Route::view('/', 'home');
 
 
 // Register
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 // Will inherit name from above
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 
 // Login
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 // Will inherit name from above
-Route::post('/login', [LoginController::class, 'store']);
+Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
+
+// All routes except register, login and home (if I even will have a home)
+// Route::group(['middleware' => 'auth'], function () {
+
+// });
+
+// Dashboard
+Route::get('/my-day', [DashboardController::class, 'index'])->name('my-day')->middleware('auth');
+// ->middleware('auth');
 
 
 // Logout
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout')->middleware('auth');
 
 // Lists
-Route::get('/lists', [ListController::class, 'index'])->name('lists');
+Route::get('/lists', [ListController::class, 'index'])->name('lists')->middleware('auth');
 
 // Tasks
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks')->middleware('auth');
+
+
+// within middleware auth
+// Update/edit profile
+// Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

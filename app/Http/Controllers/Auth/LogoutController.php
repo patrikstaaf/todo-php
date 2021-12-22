@@ -11,6 +11,7 @@ class LogoutController extends Controller
     {
         auth()->logout();
 
-        return redirect()->route('home')->with('Succes', 'Goodbye');
+        // return redirect('/')->route('/')->with('succes', 'Goodbye');
+        return redirect('/')->with('success', 'Goodbye.');
     }
 }

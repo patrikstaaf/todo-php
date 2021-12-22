@@ -47,6 +47,7 @@
         </ul>
     </nav>
     @yield('content')
+   <x-flash />
 </body>
 </html>
 

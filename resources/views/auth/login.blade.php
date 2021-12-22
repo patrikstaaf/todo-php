@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="flex justify-center">
+
     <div class="w-4/12 bg-white p-6 rounded-lg">
+        <h1 class="text-lg mb-6 w-full font-semibold">Login</h1>
         @if (session('status'))
             <div class="bg-red-500 p-4 rounded-lg mb-6 text-white text-center">
             {{ session('status') }}

@@ -17,7 +17,6 @@ class CreateListsTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('user_id')->constrained('users');
-            // $table->foreignId('tasks_id')->constrained('tasks');
             $table->timestamps();
         });
     }

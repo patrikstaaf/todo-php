@@ -5,7 +5,7 @@
     <div class="w-8/12 bg-white p-6 rounded-lg">
         My Day
 
-        Here are your tasks that have the deadline of today.
+       <br> You have 0 (dynamic amount) due today, see below:
     </div>
 </div>
 @endsection
