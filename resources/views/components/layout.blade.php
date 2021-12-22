@@ -27,7 +27,7 @@
         </ul>
         <ul class="flex items-center">
             <li>
-                <a href="" class="p-3">{{ auth()->user()->email }}</a>
+                <a href="{{ route('profile') }}" class="p-3">{{ auth()->user()->email }}</a>
             </li>
             <li>
                 <form action="{{ route('logout') }}" method="POST" class="p-3 inline">

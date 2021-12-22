@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
@@ -31,6 +32,11 @@ Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 
 // });
 
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+// Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+// Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
 // Dashboard
 Route::get('/my-day', [DashboardController::class, 'index'])->name('my-day')->middleware('auth');
 // ->middleware('auth');
@@ -44,9 +50,3 @@ Route::get('/lists', [ListController::class, 'index'])->name('lists')->middlewar
 
 // Tasks
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks')->middleware('auth');
-
-
-// within middleware auth
-// Update/edit profile
-// Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-// Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
