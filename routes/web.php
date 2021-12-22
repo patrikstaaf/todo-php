@@ -12,7 +12,7 @@ use App\Http\Controllers\DashboardController;
 
 // Make a group for middleware guest? Then no need for middleware in controller
 
-Route::view('/', 'home');
+Route::view('/', 'home'); //invokable not needed as its only returning a view?
 
 
 // Register
