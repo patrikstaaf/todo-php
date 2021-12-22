@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>To-do app</title>
+    <title>@isset($title){{ $title }} -@endisset To Do App</title>
 </head>
 <body class="h-full bg-gray-100">
 
@@ -46,11 +46,7 @@
             @endguest
         </ul>
     </nav>
-    @yield('content')
+    {{ $slot }}
    <x-flash />
 </body>
 </html>
-
-{{-- <x-app-layout title="Layouts">
-Layouts
-</x-app-layout> --}}
