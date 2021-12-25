@@ -7,13 +7,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@isset($title){{ $title }} -@endisset To Do App</title>
 </head>
-<body class="h-full bg-gray-100">
+<body class="bg-white antialiased font-sans max-w-4xl mx-auto">
 
-    <nav class="p-6 bg-gray-200 flex justify-between max-w-full mb-6">
+    <nav class="p-6 bg-white border-b border-gray-200 flex justify-between max-w-full mb-6">
         <ul class="flex items-center">
+            @guest
             <li>
                 <a href="/" class="p-3">Home</a>
             </li>
+            @endguest
             @auth
             <li>
                 <a href="{{ route('my-day') }}" class="p-3">My Day</a>
@@ -27,7 +29,7 @@
         </ul>
         <ul class="flex items-center">
             <li>
-                <a href="{{ route('profile') }}" class="p-3">{{ auth()->user()->email }}</a>
+                <a href="{{ route('profile.edit') }}" class="p-3">{{ auth()->user()->email }}</a>
             </li>
             <li>
                 <form action="{{ route('logout') }}" method="POST" class="p-3 inline">

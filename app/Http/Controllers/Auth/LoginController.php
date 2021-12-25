@@ -12,7 +12,7 @@ class LoginController extends Controller
     //     $this->middleware(['guest']);
     // }
 
-    public function index()
+    public function create()
     {
         return view('auth.login');
     }
@@ -27,7 +27,7 @@ class LoginController extends Controller
         // attempt to authenticate and log in the user based on the provided credentials
 
         if (auth()->attempt($attributes)) {
-            session()->regenerate(); // prevent session fixation
+            session()->regenerate(); // prevent session fixation?
 
             return redirect('/')->with('success', 'Welcome back.');
         }

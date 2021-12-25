@@ -15,7 +15,7 @@ class RegisterController extends Controller
     //     $this->middleware(['guest']);
     // }
 
-    public function index()
+    public function create()
     {
         return view('auth.register');
     }
@@ -24,7 +24,7 @@ class RegisterController extends Controller
     {
         $attributes = request()->validate([
             'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|min:7|max:255|confirmed',
+            'password' => 'required|min:7|max:255|confirmed', // Password is being hashed in the user model
         ]);
 
         $user = User::create($attributes);

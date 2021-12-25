@@ -1,9 +1,8 @@
 <x-layout title="My Day">
-<div class="flex justify-center">
-    <div class="w-8/12 bg-white p-6 rounded-lg">
+<div class="flex justify-center mx-auto w-full md:w-3/5 p-6">
+
         My Day
 
        <br> You have 0 (dynamic amount) due today, see below:
-    </div>
 </div>
 </x-layout>
