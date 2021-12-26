@@ -18,7 +18,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
+            $request->session()->regenerate(); // prevent session fixation
 
             return redirect('/')->with('success', 'Welcome back.');
         }
