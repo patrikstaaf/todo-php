@@ -3,13 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 
 
-Route::view('/', 'home'); //invokable not needed as its only returning a view?
+Route::view('/', 'home');
 
 // Register
 Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
@@ -20,8 +22,14 @@ Route::get('/login', [LoginController::class, 'create'])->name('login')->middlew
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout')->middleware('auth');
 
-// Logout
-// Route::post('/logout', LogoutController::class)->name('logout')->middleware('auth');
+// Forgot password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request')->middleware('guest');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email')->middleware('guest');
+
+// Reset password
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset')->middleware('guest');
+Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest');
+
 
 // All routes except register, login and home (if I even will have a home)
 // Route::group(['middleware' => 'auth'], function () {

@@ -410,6 +410,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .right-5 {
   right: 1.25rem;
 }
+.m-4 {
+  margin: 1rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -437,6 +440,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .flex {
   display: flex;
+}
+.hidden {
+  display: none;
 }
 .h-full {
   height: 100%;
@@ -567,6 +573,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-green-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 .p-6 {
   padding: 1.5rem;

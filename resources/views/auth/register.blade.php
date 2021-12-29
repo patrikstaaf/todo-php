@@ -29,7 +29,7 @@
             </div>
             <div class="mb-4">
                 <label for="password_confirmation" class="sr-only">Confirm password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm password" class="bg-gray-100 border-2 w-full p-4 rounded lg @error ('password_confirmation') border-red-300 @enderror"">
+                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm password" class="bg-gray-100 border-2 w-full p-4 rounded lg @error ('password_confirmation') border-red-300 @enderror">
 
                 @error('password_confirmation')
                     <div class="text-red-500 mt-2 text-sm">

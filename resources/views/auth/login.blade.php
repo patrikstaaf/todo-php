@@ -36,10 +36,14 @@
                     <label for="remember">Remember me</label>
                 </div>
             </div>
+            <div class="m-4">
+                <a href="/forgot-password">Forgot Password?</a>
+            </div>
             <div>
                 <button type="submit" class="bg-black text-white px-4 py-3 rounded font-medium w-full">Login</button>
             </div>
         </form>
+
     </div>
 </div>
 </x-layout>
