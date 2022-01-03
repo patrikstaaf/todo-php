@@ -21,15 +21,18 @@
                 <a href="{{ route('my-day') }}" class="p-3">My Day</a>
             </li>
             <li>
-                <a href="{{ route('lists') }}" class="p-3">Lists</a>
+                <a href="{{ route('lists.index') }}" class="p-3">Lists</a>
             </li>
             <li>
-                <a href="{{ route('tasks') }}" class="p-3">Show all tasks</a>
+                {{-- <a href="{{ route('tasks.index') }}" class="p-3">Show all tasks</a> --}}
+                <a href="/" class="p-3">All tasks</a>
             </li>
         </ul>
         <ul class="flex items-center">
             <li>
+
                 <a href="{{ route('profile.edit') }}" class="p-3">{{ auth()->user()->email }}</a>
+
             </li>
             <li>
                 <form action="{{ route('logout') }}" method="POST" class="p-3 inline">

@@ -13,4 +13,9 @@ class Task extends Model // Unguarded through the AppServiceProver
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

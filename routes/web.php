@@ -7,48 +7,27 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CategoryTaskController;
 use App\Http\Controllers\DashboardController;
-
 
 Route::view('/', 'home');
 
-// Register
-Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('register', [RegisterController::class, 'create'])->name('register');
+    Route::post('register', [RegisterController::class, 'store']);
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store']);
+    Route::get('forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset');
+    Route::post('reset-password', [ResetPasswordController::class, 'store']);
+});
 
-// Login & Logout
-Route::get('/login', [LoginController::class, 'create'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
-Route::post('/logout', [LoginController::class, 'destroy'])->name('logout')->middleware('auth');
-
-// Forgot password
-Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request')->middleware('guest');
-Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email')->middleware('guest');
-
-// Reset password
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset')->middleware('guest');
-Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest');
-
-
-// All routes except register, login and home (if I even will have a home)
-// Route::group(['middleware' => 'auth'], function () {
-
-// });
-
-// Update profile info
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
-// Route::put('/profile', [ProfileController::class, 'update'])->name('profile')->middleware('auth');
-
-
-
-// Dashboard
-Route::get('/my-day', [DashboardController::class, 'index'])->name('my-day')->middleware('auth');
-// ->middleware('auth');
-
-
-// Lists make a resource controller instead
-Route::get('/lists', [CategoryController::class, 'index'])->name('lists')->middleware('auth');
-
-// Tasks
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks')->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('my-day', DashboardController::class)->name('my-day');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile');
+    Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::resource('lists', CategoryController::class);
+    Route::resource('lists.tasks', CategoryTaskController::class); // except show/index, use index to display all tasks?
+});

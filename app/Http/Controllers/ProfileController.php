@@ -12,8 +12,8 @@ class ProfileController extends Controller
         return view('profile.edit');
     }
 
-    // public function update()
-    // {
-    //     return redirect('/')->with('success', 'Your profile info has been updated.');
-    // // }
+    public function update()
+    {
+        return redirect('/profile')->with('success', 'Your profile info has been updated.');
+    }
 }

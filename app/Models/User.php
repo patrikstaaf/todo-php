@@ -52,4 +52,14 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    // public function tasks()
+    // {
+    //     return $this->hasMany(Task::class);
+    // }
+
+    // public function lists()
+    // {
+    //     return $this->hasMany(Category::class);
+    // }
 }
