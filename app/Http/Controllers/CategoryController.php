@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:categories',
+            'title' => 'required|string',
         ]);
 
         $request->user()->lists()->create([
@@ -36,10 +36,17 @@ class CategoryController extends Controller
 
     public function show(Category $list, Task $tasks)
     {
+        // $tasks = Task::where('user_id', auth()->user()->id)->get();
+        // $list = Category::where('user_id', auth()->user()->id)->get();
+
+        // return view('lists.show', compact('tasks, list'));
+
         return view('lists.show', [
             'category' => $list,
             'task' => $tasks,
         ]);
+
+        // user_id auth()->user()
     }
 
     public function edit(Category $list)
@@ -50,7 +57,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $list)
     {
         $updateListName = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string',
         ]);
 
         $list->update($updateListName);

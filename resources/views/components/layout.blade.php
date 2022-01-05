@@ -24,8 +24,8 @@
                 <a href="{{ route('lists.index') }}" class="p-3">Lists</a>
             </li>
             <li>
-                {{-- <a href="{{ route('tasks.index') }}" class="p-3">Show all tasks</a> --}}
                 <a href="/" class="p-3">All tasks</a>
+                {{-- <a href="{{ route('lists.tasks.index', $list) }}" class="p-3">All tasks</a> --}}
             </li>
         </ul>
         <ul class="flex items-center">

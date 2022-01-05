@@ -47,19 +47,24 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
         'email_verified_at' => 'datetime',
     ];
 
-    // mutator - mutate the value before its saved
+    // mutator - mutate the value before its saved - not sure the difference between hash facade vs bcrypt
     public function setPasswordAttribute($password)
     {
+
+        // if(trim($password) === '') { dont change current hash/pw if user update but !password in profile
+        //     return;
+        // }
+
         $this->attributes['password'] = bcrypt($password);
     }
 
-    // public function tasks()
-    // {
-    //     return $this->hasMany(Task::class);
-    // }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
-    // public function lists()
-    // {
-    //     return $this->hasMany(Category::class);
-    // }
+    public function lists()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

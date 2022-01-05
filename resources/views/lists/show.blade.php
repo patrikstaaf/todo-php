@@ -31,32 +31,6 @@
             <a href="/">Edit</a> --}}
 
 
-    {{-- @can('delete', $list) --}}
-    {{-- <form action="{{ route('lists.destroy', $list) }}" method="POST"> --}}
-
-{{--
-    <form action="/" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit" onclick="return confirm('Confirm, do you want to delete this task?')" class="p-3">Delete</button>
-    </form> --}}
-
-
-    {{-- @endcan --}}
-{{--
-
-        </div>
-        </div> --}}
-        {{-- <hr> --}}
-    {{-- @empty --}}
-{{--
-
-    <div class="mx-auto">
-        <p>No tasks yet.</p>
-    </div> --}}
-
-
-
 
     @forelse ($category->tasks as $task)
     <div class="flex justify-between max-w-full my-3">
@@ -65,28 +39,37 @@
             <div class="flex flex-col">
             <p>{{$task->title}}</p>
             <p>{{$task->description}}</p>
-            <p>{{$task->deadline}}</p>
+            <p>Due: {{$task->deadline}}</p>
+            @if ($task->completed > 0)
+        <span style="color: green;">Completed: Yes</span>
+    @else
+        <span style="color: red;">Completed: No</span>
+    @endif
             </div>
         </div>
         <div class="flex items-center">
-
-<a href="/" class="mx-2 text-center">Done</a>
-<a href="/" class="mx-2 text-center">Edit</a>
+{{-- <form action="{{ route('lists.tasks.update', [$category, $task]) }}" method="POST">
+    @csrf
+    @method('PATCH') --}}
+    {{-- <input type="checkbox" class="form-check-input mx-2" name="status" value="{{$task->completed}} "{{$task->completed==1 ? 'checked' : ''}}> --}}
+{{-- <button type="submit" class="mx-2 text-center">Done</button>
+</form> --}}
+<a href="{{ route('lists.tasks.edit', [$category, $task]) }}">Edit</a>
 
         {{-- <a href="{{ route('lists.edit', $list) }}">Edit</a> --}}
 {{-- @can('delete', $list) --}}
 {{-- <form action="{{ route('lists.destroy', $list) }}" method="POST"> --}}
-@csrf
-@method('DELETE')
-<button type="submit" onclick="return confirm('Confirm, do you want to delete this list and its tasks?')" class="mx-2">Delete</button>
-{{-- </form>
-@endcan --}}
-
+    @can('delete', $task)
+    <form action="{{ route('lists.tasks.destroy', [$category, $task]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" onclick="return confirm('Confirm, do you want to delete this task?')" class="p-3">Delete</button>
+    </form>
+    @endcan
     </div>
 
     </div>
     <hr>
-    {{-- <hr> --}}
 @empty
 <div class="mx-auto">
     <p>No tasks yet.</p>
@@ -94,8 +77,5 @@
 
 @endforelse
 </div>
-    {{-- @endforelse --}}
-    {{-- {{ $category->links() }} --}}
-
 
 </x-layout>

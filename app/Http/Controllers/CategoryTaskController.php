@@ -9,50 +9,83 @@ use App\Models\Category;
 class CategoryTaskController extends Controller
 {
 
-    // public function index()
-    // {
-    //     return view('tasks.index');
+    public function index(Category $list, Task $task)
+    {
 
-    // }
+        $task = $list->tasks()->where('user_id', auth()->user()->id)->get();
+
+        // $task = Task::where('user_id', auth()->user()->id)->get();
+        // $list = Category::where('user_id', auth()->user()->id)->get();
+
+        // return view('task.index', compact('task, list'));
+        return view('task.index', [
+            'task' => $task,
+        ]);
+
+
+        // return view('tasks.index', [
+        //     'category' => $list,
+        //     'task' => $task,
+        // ]);
+        // return view('tasks.index', [
+        //     'task' => Task::all()->where('user_id', auth()->id())->paginate(20),
+        // ]);
+    }
 
     public function create(Category $list)
     {
         return view('tasks.create', ['category' => $list]);
-        // want to fetch category->title data
     }
 
     public function store(Request $request, Category $list)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'description' => 'nullable',
+            'title' => 'required|string',
+            'description' => 'nullable|string|max:255',
             'deadline' => 'nullable|date',
         ]);
 
-        $list->tasks()->user()->create([
+        $list->tasks()->create([
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
+            'user_id' => auth()->id(),
         ]);
 
-        return redirect('lists.show', [$list->list_id, $list])->with('success', 'Your task has been added.');
+        return redirect()->route('lists.show', [$list->id])->with('success', 'Your task has been added.');
     }
 
-    // public function edit(Category $category, Task $task)
-    // {
-    //     if($category->task_id != $task->id) {
-    //         abort(404);
-    //     }
-    // }
+    public function edit(Category $list, Task $task)
+    {
+        return view('tasks.edit', [
+            'category' => $list,
+            'task' => $task,
+        ]);
+    }
 
-    // // public function update()
-    // // {
-    // // }
+    public function update(Request $request, Category $list, Task $task)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'nullable|string|max:255',
+            'deadline' => 'nullable|date',
+            'completed' => 'nullable|boolean',
+        ]);
 
-    // public function destroy(Category $category)
-    // {
-    //     $category->delete();
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'completed' => $request->has('completed'),
+        ]);
 
-    //     return back()->with('success', 'List Deleted');
-    // }
+        return redirect()->route('lists.show', [$list->id])->with('success', 'Your task has been updated.');
+    }
+
+    public function destroy(Category $list, Task $task)
+    {
+        $task->delete();
+
+        return redirect()->route('lists.show', [$list->id])->with('success', 'Task Deleted.');
+    }
 }
