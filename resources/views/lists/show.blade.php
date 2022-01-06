@@ -7,7 +7,8 @@
     <h1 class="w-full mb-6 font-bold text-center">{{$category->title}}</h1>
 
 
-    @forelse ($category->tasks as $task)
+    {{-- @forelse ($category->tasks as $task) --}}
+    @forelse (auth()->user()->category->tasks as $task)
     <div class="flex justify-between max-w-full my-3">
 
         <div class="flex items-center">
@@ -24,7 +25,7 @@
         </div>
         <div class="flex items-center">
 
-<a href="{{ route('lists.tasks.edit', [$category, $task]) }}">Edit</a>
+<a href="{{ route('lists.tasks.edit', [$category, $task]) }}" class="p-3">Edit</a>
 
     @can('delete', $task)
     <form action="{{ route('lists.tasks.destroy', [$category, $task]) }}" method="POST">

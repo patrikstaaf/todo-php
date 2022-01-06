@@ -53,6 +53,18 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
         $this->attributes['password'] = bcrypt($password);
     }
 
+    // public function getAvatarAttribute($value)
+    // public function getAvatarPathAttribute()
+    // {
+    // return $value
+    //     ? asset("uploads/{$value}")
+    //     : asset('uploads/profile-placeholder.png');
+
+    //     return $this->avatar
+    //         ? asset("uploads/avatar/{$this->avatar}")
+    //         : asset('uploads/profile-placeholder.png');
+    // }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);

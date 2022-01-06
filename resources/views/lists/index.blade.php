@@ -7,12 +7,13 @@
         <h1 class="w-full mb-6 font-bold text-center">Your lists</h1>
         {{-- @foreach (\App\Models\Category::with('tasks')->get() as $lists) --}}
         @forelse ($category as $list)
+        {{-- @forelse (auth()->user()->category->tasks as $task) --}}
             <div class="flex justify-between max-w-full my-3">
                 <div class="flex items-center">
         <a href="{{ route('lists.show', $list) }}" class="my-2 text-center">{{ $list->title }}</a>
             </div>
             <div class="flex items-center">
-                <a href="{{ route('lists.edit', $list) }}">Edit</a>
+                <a href="{{ route('lists.edit', $list) }}" class="p-3">Edit</a>
         @can('delete', $list)
         <form action="{{ route('lists.destroy', $list) }}" method="POST">
         @csrf

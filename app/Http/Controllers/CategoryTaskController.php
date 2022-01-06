@@ -9,6 +9,18 @@ use App\Models\Category;
 class CategoryTaskController extends Controller
 {
 
+    // public function index(Category $list)
+    // {
+    //     $task = $list->tasks()->where('user_id', auth()->user()->id)->get();
+
+    //     return view('all-task', [
+    //         'task' => $task,
+    //     ]);
+    // }
+
+
+
+
     // public function index(Category $list, Task $task)
     // public function index(Request $request, Task $task, Category $list)
     // {

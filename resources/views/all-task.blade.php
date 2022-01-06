@@ -4,7 +4,7 @@
             <div class="flex flex-col w-full">
                 <h1 class="w-full mb-6 font-bold text-center">A list of all your tasks</h1>
            {{-- <div class="mt-4"> --}}
-           @forelse ($tasks as $task)
+           @forelse (auth()->user()->tasks as $task)
            <div class="flex max-w-full my-3">
            {{-- <div class="flex items-center max-w-full"> --}}
             <div class="flex flex-col">
@@ -20,13 +20,10 @@
         </div>
             <hr>
             @empty
-                <p>No tasks due today.</p>
+                <p class="mx-auto">No task created yet. Create a list then create a task.</p>
            @endforelse
         </div>
     </div>
-
-{{-- </div>
-</div> --}}
 </x-layout>
 
 

@@ -31,5 +31,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile', [ProfileController::class, 'update'])->name('profile');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::resource('lists', CategoryController::class);
-    Route::resource('lists.tasks', CategoryTaskController::class); // except show/index, use index to display all tasks?
+    Route::resource('lists.tasks', CategoryTaskController::class); // except show/index, use index to display all tasks? ->except('show', 'index')
 });

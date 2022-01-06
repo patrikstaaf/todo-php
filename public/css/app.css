@@ -445,6 +445,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ml-4 {
   margin-left: 1rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
 .inline {
   display: inline;
 }
@@ -454,11 +463,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hidden {
   display: none;
 }
+.h-8 {
+  height: 2rem;
+}
 .w-full {
   width: 100%;
 }
 .w-8\/12 {
   width: 66.666667%;
+}
+.w-8 {
+  width: 2rem;
 }
 .max-w-4xl {
   max-width: 56rem;
@@ -487,6 +502,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded {
   border-radius: 0.25rem;
 }
+.rounded-full {
+  border-radius: 9999px;
+}
 .border-2 {
   border-width: 2px;
 }
@@ -507,6 +525,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-green-500 {
   --tw-border-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-border-opacity));
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -552,6 +574,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-10 {
   padding: 2.5rem;
 }
+.p-2 {
+  padding: 0.5rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -584,6 +609,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .font-semibold {
   font-weight: 600;
 }
@@ -592,6 +621,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-bold {
   font-weight: 700;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -604,6 +636,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-green-800 {
   --tw-text-opacity: 1;
   color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;
