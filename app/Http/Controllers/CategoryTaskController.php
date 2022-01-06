@@ -9,28 +9,47 @@ use App\Models\Category;
 class CategoryTaskController extends Controller
 {
 
-    public function index(Category $list, Task $task)
-    {
+    // public function index(Category $list, Task $task)
+    // public function index(Request $request, Task $task, Category $list)
+    // {
 
-        $task = $list->tasks()->where('user_id', auth()->user()->id)->get();
+    // $task = $list->tasks()->where('user_id', auth()->user()->id)->get();
 
-        // $task = Task::where('user_id', auth()->user()->id)->get();
-        // $list = Category::where('user_id', auth()->user()->id)->get();
+    // $task = Task::where('user_id', auth()->user()->id)->get();
+    // $list = Category::where('user_id', auth()->user()->id)->get();
 
-        // return view('task.index', compact('task, list'));
-        return view('task.index', [
-            'task' => $task,
-        ]);
+    // return view('task.index', compact('task, list'));
+    // return view('task.index', [
+    //     'task' => $task,
+    // ]);
 
 
-        // return view('tasks.index', [
-        //     'category' => $list,
-        //     'task' => $task,
-        // ]);
-        // return view('tasks.index', [
-        //     'task' => Task::all()->where('user_id', auth()->id())->paginate(20),
-        // ]);
-    }
+    // $tasks = Task::where('user_id', $request->user()->id)->orderBy('created_at', 'asc')->get();
+
+    // return view('tasks.index', [
+    //     'category' => $list,
+    //     'tasks' => $tasks,
+    // ]);
+
+
+    // return view('my-day', [
+    //     'task' => return Task::where('user_id', $user->id)
+    //     ->orderBy('created_at', 'asc')
+    //     ->get();
+
+    //     'tasks' => Task::all->where('user_id', auth()->user()->id)->get(); // make dynamic timezone for user
+    //     'tasks' => Task::all('deadline', '=', today())->get() // make dynamic timezone for user
+    // ]);
+
+
+    // return view('tasks.index', [
+    //     'category' => $list,
+    //     'task' => $task,
+    // ]);
+    // return view('tasks.index', [
+    //     'task' => Task::all()->where('user_id', auth()->id())->paginate(20),
+    // ]);
+
 
     public function create(Category $list)
     {

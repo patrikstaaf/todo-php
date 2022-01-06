@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTaskController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AllTaskController;
 
 Route::view('/', 'home');
 
@@ -25,6 +26,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('my-day', DashboardController::class)->name('my-day');
+    Route::get('all-task', AllTaskController::class)->name('all-task');
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
