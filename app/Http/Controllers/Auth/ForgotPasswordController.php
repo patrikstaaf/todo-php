@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
+
 class ForgotPasswordController extends Controller
 {
     public function create()
@@ -24,8 +25,8 @@ class ForgotPasswordController extends Controller
         );
 
         return $status == Password::RESET_LINK_SENT
-            ? back()->with('status', __($status))
-            : back()->withInput($request->only('email'))
+            ? back()->with('status', __($status)) // if successful
+            : back()->withInput($request->only('email')) // if not
             ->withErrors(['email' => __($status)]);
     }
 }

@@ -50,11 +50,6 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
     // mutator - mutate the value before its saved - not sure the difference between hash facade vs bcrypt
     public function setPasswordAttribute($password)
     {
-
-        // if(trim($password) === '') { dont change current hash/pw if user update but !password in profile
-        //     return;
-        // }
-
         $this->attributes['password'] = bcrypt($password);
     }
 
