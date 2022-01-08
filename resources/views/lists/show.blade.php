@@ -1,4 +1,5 @@
 <x-layout title="{{$category->title}}">
+{{-- <x-layout title="{{auth()->user()->category->title}}"> --}}
     <div class="flex w-full justify-end px-4">
         <a href="{{ route('lists.tasks.create', $category) }}" class="mx-4 p-3 border border-green-500 ">Add task</a>
     </div>
@@ -7,8 +8,8 @@
     <h1 class="w-full mb-6 font-bold text-center">{{$category->title}}</h1>
 
 
-    {{-- @forelse ($category->tasks as $task) --}}
-    @forelse (auth()->user()->category->tasks as $task)
+    @forelse ($category->tasks as $task)
+    {{-- @forelse (auth()->user()->category->tasks as $task) --}}
     <div class="flex justify-between max-w-full my-3">
 
         <div class="flex items-center">

@@ -9,7 +9,8 @@
 </head>
 <body class="bg-white antialiased font-sans max-w-4xl mx-auto">
 
-    <nav class="p-6 bg-white border-b border-gray-200 flex justify-between max-w-full mb-6">
+    {{-- <nav class="p-6 bg-white border-b border-gray-200 flex justify-between max-w-full mb-6"> --}}
+    <nav class="p-6 flex justify-between max-w-full mb-6">
         <ul class="flex items-center">
             @guest
             <li>
@@ -34,7 +35,7 @@
                     {{-- <img class="h-8 w-8 rounded-full inline-block" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> --}}
                     {{-- <img class="h-8 w-8 rounded-full inline-block" src="{{ auth()->user->avatar_path }}"> --}}
                     {{-- <img class="h-8 w-8 rounded-full inline-block" src="{{ url(auth()->user()->avatar ?? '/uploads/user-avatar.webp') }}"> --}}
-                    <img class="h-8 w-8 rounded-full inline-block" src="{{ $user->avatar ?? '/uploads/user-avatar.webp' }}">
+                    <img class="h-8 w-8 rounded-full inline-block" src="{{ auth()->user()->avatar ?? '/uploads/user-avatar.webp' }}">
                     {{-- <img class="h-8 w-8 rounded-full inline-block" src="{{ auth()->user()->avatar }}"> --}}
                 <a href="{{ route('profile.edit') }}" class="p-3 inline-block">{{ auth()->user()->email }}</a>
             </div>

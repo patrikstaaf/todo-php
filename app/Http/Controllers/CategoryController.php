@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\User;
+// use App\Models\User;
 use App\Models\Task;
 
 class CategoryController extends Controller
@@ -16,8 +16,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Category $list)
     {
+        $this->authorize('create', $list);
+
         return view('lists.create');
     }
 
@@ -36,17 +38,12 @@ class CategoryController extends Controller
 
     public function show(Category $list, Task $tasks)
     {
-        // $tasks = Task::where('user_id', auth()->user()->id)->get();
-        // $list = Category::where('user_id', auth()->user()->id)->get();
-
-        // return view('lists.show', compact('tasks, list'));
+        $this->authorize('show', $list);
 
         return view('lists.show', [
             'category' => $list,
             'task' => $tasks,
         ]);
-
-        // user_id auth()->user()
     }
 
     public function edit(Category $list)
@@ -56,11 +53,13 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $list)
     {
-        $updateListName = $request->validate([
+        $this->authorize('update', $list);
+
+        $updateListTitle = $request->validate([
             'title' => 'required|string',
         ]);
 
-        $list->update($updateListName);
+        $list->update($updateListTitle);
 
         return redirect('lists')->with('success', 'List title updated.');
     }
