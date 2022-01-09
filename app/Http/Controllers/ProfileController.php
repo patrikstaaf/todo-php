@@ -26,7 +26,7 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'email' => ['required', 'email', 'max:255', 'unique:users,email' . auth()->user()->id],
-            'password' => ['required', 'string', 'max:255', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'max:255', 'min:16', 'confirmed'],
             // 'avatar' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
             // 'email' => 'required|email|max:255|unique:users,email,'.$request->id,
             // 'password' => 'required|min:8|max:255|confirmed',

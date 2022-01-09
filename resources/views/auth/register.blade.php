@@ -4,7 +4,7 @@
         <h1 class="text-lg mb-6 w-full font-semibold">Register</h1>
         <p class="">Requirements:</p>
         <p class="">Enter a valid email address.</p>
-        <p class="pb-4">Password minimum of 7 characters.</p>
+        <p class="pb-4">Password minimum of 16 characters.</p>
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <div class="mb-4">
