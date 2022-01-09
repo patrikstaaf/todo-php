@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/delete/{user}', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::resource('lists', CategoryController::class);
     Route::resource('lists.tasks', CategoryTaskController::class); // except show/index, use index to display all tasks? ->except('show', 'index')

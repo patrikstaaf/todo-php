@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Rules\MatchOldPassword;
 
 class ProfileController extends Controller
 {
 
-    public function show(User $user)
-    {
-        return view('profile.show', ['user' => $user]);
-    }
+    // public function show(User $user)
+    // {
+    //     return view('profile.show', ['user' => $user]);
+    // }
 
-    public function edit(User $user)
+    public function edit()
     {
-        return view('profile.edit', ['user' => $user]);
-        // $user = User::with('id')
-        // return view('profile.edit') - with('user', auth()->user());
+        return view('profile.edit', ['user' => auth()->user()]);
     }
 
     public function update(Request $request, User $user)
@@ -49,6 +49,7 @@ class ProfileController extends Controller
 
     public function destroy(Request $request, User $user)
     {
+
         $this->authorize('delete', $user);
 
         $user->delete();
