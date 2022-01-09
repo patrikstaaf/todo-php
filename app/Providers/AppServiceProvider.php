@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Model::unguard(); // as long as I dont request all to a create facade, be explicit!
+        Model::unguard(); // as long as I dont request all, be explicit!
     }
 }

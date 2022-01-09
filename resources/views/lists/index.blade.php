@@ -1,6 +1,8 @@
 <x-layout title="Lists">
     <div class="flex w-full justify-end px-4">
+        {{-- @can('create', $list) --}}
         <a href="{{ route('lists.create') }}" class="mx-4 p-3 border border-green-500 ">Add list</a>
+        {{-- @endcan --}}
     </div>
     <div class="flex justify-center mx-auto w-full p-6">
         <div class="flex flex-col w-full">

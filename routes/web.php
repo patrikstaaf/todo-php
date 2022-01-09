@@ -27,9 +27,10 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('my-day', DashboardController::class)->name('my-day');
     Route::get('all-task', AllTaskController::class)->name('all-task');
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::resource('lists', CategoryController::class);
     Route::resource('lists.tasks', CategoryTaskController::class); // except show/index, use index to display all tasks? ->except('show', 'index')

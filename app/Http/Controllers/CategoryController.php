@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function create(Category $list)
     {
-        $this->authorize('create', $list);
+        // $this->authorize('create', $list);
 
         return view('lists.create');
     }

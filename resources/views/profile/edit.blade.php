@@ -1,7 +1,7 @@
 <x-layout title="Edit Profile">
     <div class="flex justify-center mx-auto w-full md:w-3/5">
         <div class="bg-white p-6 rounded-lg w-full">
-            <h1 class="text-lg mb-6 w-full font-semibold">Edit Profile</h1>
+            <h1 class="w-full mb-6 font-bold text-center">Edit Profile</h1>
 
             {{-- <img src="{{ $user->avatar ?? '/uploads/profile-placeholder.png' }}" alt="your avatar" width="40" class="mx-auto rounded m-4"> --}}
             {{-- <img src="/uploads/profile-placeholder.png" alt="your avatar" width="40" class="mx-auto rounded m-4"> --}}
@@ -19,7 +19,6 @@
                 {{-- <input class="bg-gray-100 border-2 w-full p-4 rounded lg" type="file" name="avatar" id="avatar" accept="image/*"> --}}
                 <input class="mx-auto" type="file" name="avatar" id="avatar" accept="image/*">
                 {{-- <img src="{{ auth()->user()->avatar ?? '/uploads/user-avatar.webp' }}" alt="your avatar" width="40"> --}}
-         
 
             </div>
 
@@ -28,7 +27,7 @@
             @enderror
         </div>
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-100 border-2 w-full p-4 rounded lg @error('email') border-red-300  @enderror" value="{{ auth()->user()->email }}">
+                    <input type="email" name="email" id="email" class="bg-gray-100 border-2 w-full p-4 rounded lg @error('email') border-red-300  @enderror" value="{{ auth()->user()->email }}" required>
 
                     @error('email')
                         <div class="text-red-500 mt-2 text-sm">

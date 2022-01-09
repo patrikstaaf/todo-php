@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|min:7|max:255|confirmed',
+            'password' => 'required|min:8|max:255|confirmed',
         ]);
 
         $user = User::create($credentials); // Password is being hashed in user model

@@ -122,14 +122,3 @@ class CategoryTaskController extends Controller
         return redirect()->route('lists.show', [$list->id])->with('success', 'Task Deleted.');
     }
 }
-
-
-
-// public function destroy(Category $list)
-//     {
-//         $this->authorize('delete', $list);
-
-//         $list->delete();
-
-//         return back()->with('success', 'List deleted.');
-//     }
