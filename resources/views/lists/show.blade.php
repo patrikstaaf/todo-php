@@ -1,7 +1,10 @@
 <x-layout title="{{$category->title}}">
 {{-- <x-layout title="{{auth()->user()->category->title}}"> --}}
-    <div class="flex w-full justify-end px-4">
+    {{-- <div class="flex w-full justify-end px-4"> --}}
+    <div class="flex w-full justify-between px-4">
+        <a href="{{ route('lists.index') }}" class="p-3">< Back to lists</a>
         <a href="{{ route('lists.tasks.create', $category) }}" class="mx-4 p-3 border border-green-500 ">Add task</a>
+
     </div>
    <div class="flex justify-center mx-auto w-full p-6">
     <div class="flex flex-col w-full">

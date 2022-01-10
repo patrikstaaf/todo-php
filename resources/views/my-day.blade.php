@@ -3,7 +3,8 @@
 
         <div class="flex flex-col w-full">
             <h1 class="w-full mb-6 font-bold text-center">Tasks with assigned deadline & due today:</h1>
-       @forelse (auth()->user()->tasks as $task)
+
+       @forelse ($tasks as $task)
        <div class="flex max-w-full my-3">
        {{-- <div class="flex items-center max-w-full"> --}}
         <div class="flex flex-col">

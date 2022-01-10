@@ -7,9 +7,9 @@ use App\Models\Task;
 
 class AllTaskController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $tasks = Task::where('user_id', $request->user()->id)->orderBy('created_at', 'desc')->get();
+        $tasks = Task::all()->where('user_id', auth()->user()->id);
 
         return view('all-task', [
             'tasks' => $tasks,

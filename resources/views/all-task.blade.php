@@ -4,7 +4,8 @@
             <div class="flex flex-col w-full">
                 <h1 class="w-full mb-6 font-bold text-center">A list of all your tasks</h1>
            {{-- <div class="mt-4"> --}}
-           @forelse (auth()->user()->tasks as $task)
+           {{-- @forelse (auth()->user()->tasks as $task) --}}
+           @forelse ($tasks as $task)
            <div class="flex max-w-full my-3 mx-auto text-center">
            {{-- <div class="flex items-center max-w-full"> --}}
             <div class="flex flex-col">

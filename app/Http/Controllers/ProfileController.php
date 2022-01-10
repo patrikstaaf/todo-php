@@ -19,7 +19,6 @@ class ProfileController extends Controller
 
     public function changepassword(Request $request, User $user)
     {
-
         $this->authorize('changepassword', $user);
 
         if (strcmp($request->get('current_password'), $request->get('new_password')) == 0) {
