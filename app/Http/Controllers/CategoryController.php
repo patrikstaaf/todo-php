@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-// use App\Models\User;
 use App\Models\Task;
 
 class CategoryController extends Controller
@@ -16,10 +15,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create(Category $list)
+    public function create()
     {
-        // $this->authorize('create', $list);
-
         return view('lists.create');
     }
 

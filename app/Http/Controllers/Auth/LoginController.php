@@ -32,9 +32,9 @@ class LoginController extends Controller
     {
         auth()->logout();
 
-        $request->session()->invalidate(); // invalidate user session
+        $request->session()->invalidate();
 
-        $request->session()->regenerateToken(); // regenerate for security purposes
+        $request->session()->regenerateToken();
 
         return redirect('/')->with('success', 'Goodbye.');
     }

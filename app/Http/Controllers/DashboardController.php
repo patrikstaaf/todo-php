@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 
-
 class DashboardController extends Controller
 {
     public function __invoke()
