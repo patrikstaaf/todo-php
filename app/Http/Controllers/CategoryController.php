@@ -55,11 +55,11 @@ class CategoryController extends Controller
     {
         $this->authorize('update', $list);
 
-        $updateListTitle = $request->validate([
+        $attributes = $request->validate([
             'title' => 'required|string',
         ]);
 
-        $list->update($updateListTitle);
+        $list->update($attributes);
 
         return redirect('lists')->with('success', 'List title updated.');
     }

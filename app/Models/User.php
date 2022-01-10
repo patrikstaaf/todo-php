@@ -56,15 +56,7 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
     public function getAvatarAttribute($value)
 
     {
-        // return $value
-        //     ? asset("uploads/{$value}")
-        //     : asset('uploads/profile-placeholder.png');
-
-        //     return $this->avatar
-        //         ? asset("uploads/avatar/{$this->avatar}")
-        //         : asset('uploads/profile-placeholder.png');
-
-        return asset($value ?: '/uploads/profile-placeholder.png');
+        return asset($value ?: '/avatar/default-avatar.png');
     }
 
     public function tasks()

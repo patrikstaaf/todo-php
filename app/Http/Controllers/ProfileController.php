@@ -5,46 +5,61 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-
-    // public function show(User $user)
-    // {
-    //     return view('profile.show', ['user' => $user]);
-    // }
 
     public function edit()
     {
         return view('profile.edit', ['user' => auth()->user()]);
     }
 
+    public function changepassword(Request $request, User $user)
+    {
+
+        $this->authorize('changepassword', $user);
+
+        if (strcmp($request->get('current_password'), $request->get('new_password')) == 0) {
+            return back()->with('success', 'New Password cannot be same as your current password.');
+        }
+
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required', 'string', 'max:255', 'min:16',],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+
+        $user->update(['password' => $request->new_password]);
+
+        return redirect()->route('profile.edit', $user)->with("success", "Password successfully changed!");
+    }
+
     public function update(Request $request, User $user)
     {
-        $this->validate($request, [
-            'email' => ['required', 'email', 'max:255', 'unique:users,email' . auth()->user()->id],
-            'password' => ['required', 'string', 'max:255', 'min:16', 'confirmed'],
-            // 'avatar' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
-            // 'email' => 'required|email|max:255|unique:users,email,'.$request->id,
-            // 'password' => 'required|min:8|max:255|confirmed',
-            // 'avatar' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
-            // Rule::unique('users')->ignore($user->id)
+
+        $this->authorize('update', $user);
+
+        $attributes = request()->validate([
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user)],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:2048'],
         ]);
 
+        if ($request->avatar != null) {
+            $imagepath = request('avatar')->store('uploads', 'public');
 
-        $user->update([
-            'email' => $request->email,
-            'password' => $request->password,
-            'avatar' => $request->hasFile('avatar'),
-        ]);
+            $attributes['avatar'] = "/storage/" . $imagepath;
 
+            Storage::delete(str_replace('/storage', '/public', $user->avatar));
 
+            $user->update($attributes);
+        }
 
+        $user->update($attributes);
 
-        return back()->with('success', 'Your profile info has been updated.');
+        return redirect('/profile')->with('success', 'Your profile was successfully updated.');
     }
 
     public function destroy(Request $request, User $user)
