@@ -11,14 +11,17 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        // return view('my-day', [
-        //     'tasks' => Task::whereDate('deadline', '=', today())->get(),
-        // ]);
-
         return view('my-day', [
-            'tasks' => Task::whereNotNull('deadline')->with('category', 'user')->whereDate('deadline', '=', today())->get(),
-
-            // ('deadline', '=', today())->get(),
+            'tasks' => Task::whereDate('deadline', '=', today())->whereNotNull('deadline')->get(),
         ]);
+
+        //     return view('my-day', [
+        //         'tasks' => Task::whereNotNull('deadline')->with('category', 'user')->whereDate('deadline', '=', today())->get(),
+
+        //         // ('deadline', '=', today())->get(),
+
+
+        //     ]);
+        // }
     }
 }
