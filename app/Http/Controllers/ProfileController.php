@@ -25,7 +25,7 @@ class ProfileController extends Controller
         } // should have created an 'error' message design, but this will do for now...
 
         $request->validate([
-            'current_password' => ['required', new MatchOldPassword],
+            'current_password' => ['required', new MatchOldPassword()],
             'new_password' => ['required', 'string', 'max:255', 'min:16',],
             'new_confirm_password' => ['same:new_password'],
         ]);
