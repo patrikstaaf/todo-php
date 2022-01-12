@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-
     public function edit()
     {
         return view('profile.edit', ['user' => auth()->user()]);
@@ -23,7 +22,7 @@ class ProfileController extends Controller
 
         if (strcmp($request->get('current_password'), $request->get('new_password')) == 0) {
             return back()->with('success', 'New Password cannot be same as your current password.');
-        } // should have create an 'error' message design, but this will do for now...
+        } // should have created an 'error' message design, but this will do for now...
 
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],

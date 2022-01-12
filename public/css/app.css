@@ -585,6 +585,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-clip {
+  overflow: clip;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -600,8 +615,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border {
   border-width: 1px;
 }
+.border-0 {
+  border-width: 0px;
+}
+.border-b-2 {
+  border-bottom-width: 2px;
+}
 .border-solid {
   border-style: solid;
+}
+.border-hidden {
+  border-style: hidden;
+}
+.border-none {
+  border-style: none;
 }
 .border-red-300 {
   --tw-border-opacity: 1;
@@ -618,6 +645,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+.border-transparent {
+  border-color: transparent;
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -893,6 +923,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .hover\:border-l-2:hover {
   border-left-width: 2px;
+}
+.hover\:border-solid:hover {
+  border-style: solid;
+}
+.hover\:border-slate-200:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(226 232 240 / var(--tw-border-opacity));
 }
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;

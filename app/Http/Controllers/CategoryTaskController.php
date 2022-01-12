@@ -8,7 +8,6 @@ use App\Models\Category;
 
 class CategoryTaskController extends Controller
 {
-
     public function create(Category $list)
     {
         return view('tasks.create', ['category' => $list]);
