@@ -10,22 +10,19 @@ Add the installation instructions.
 
 # Code Review
 
-Code review written by [Jane Doh](https://github.com/username).
+Code review written by [Neo Lejondahl](https://github.com/NeoIsRecursive).
 
-1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-3. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-4. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-5. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-6. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-7. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-8. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-9. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-10. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
+1. `Controllers` - Strict types,
+2. `CategoryTaskController:21` - Maybe validate format aswell,
+3. `Models/User:61-66` - You have created hasmany on the user but never use them?,
+4. `web.php` - Really like the structure and how it looks, easy to see were stuff is.
+5. `resources/css/app.css` - maybe make some own classes and @apply tailwindcss classes to them, if you repeat lots of classes on more than one location example buttons or nav links, 
+6. `accesability` - I could navigate and do everything on the site with only the keyboard, great! 
+7. `overall` - I like it, the code is clean and ‘simple’ which is great. Really good job and it looks good aswell,
 
 # Testers
 
 Tested by the following people:
 
-1. Jane Doe
+1. Neo Lejondahl
 2. John Doe
