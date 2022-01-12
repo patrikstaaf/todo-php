@@ -7,57 +7,106 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@isset($title){{ $title }} -@endisset To Do App</title>
 </head>
-<body class="bg-white antialiased font-sans max-w-4xl mx-auto">
+<body class="antialiased">
+    <div class="bg-white text-slate-700 dark:text-slate-200  min-h-screen dark:bg-slate-900">
+        <div class="font-sans max-w-3xl mx-auto p-6 md:p-16">
 
-    {{-- <nav class="p-6 bg-white border-b border-gray-200 flex justify-between max-w-full mb-6"> --}}
-    <nav class="p-6 flex justify-between max-w-full mb-6">
-        <ul class="flex items-center">
-            @guest
-            <li>
-                <a href="/" class="p-3">Home</a>
-            </li>
-            @endguest
-            @auth
-            <li>
-                <a href="{{ route('my-day') }}" class="p-3">My Day</a>
-            </li>
-            <li>
-                <a href="{{ route('lists.index') }}" class="p-3">Lists</a>
-            </li>
-            <li>
-                <a href="{{ route('all-task') }}" class="p-3">All tasks</a>
-                {{-- <a href="{{ route('lists.tasks.index', $list) }}" class="p-3">All tasks</a> --}}
-            </li>
-        </ul>
-        <ul class="flex items-center">
-            <li>
-                <div class="flex items-center">
-                    {{-- <img class="h-8 w-8 rounded-full inline-block" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> --}}
-                    {{-- <img class="h-8 w-8 rounded-full inline-block" src="/uploads/profile-placeholder.png"> --}}
-                    {{-- <img class="h-8 w-8 rounded-full inline-block" src="{{ url(auth()->user()->avatar ?? '/uploads/user-avatar.webp') }}"> --}}
-                    <img class="h-8 w-8 rounded-full inline-block" src="{{ auth()->user()->avatar }}">
+    <h1 class="text-center"><a href="/"><span class="text-center font-bold leading-tight text-5xl mb-0">TO</span><span class="text-center font-thin leading-tight text-5xl mb-0">DO</span></a></h1>
+    <h2 class="text-lg text-center mb-6">A minimal to-do app</h2>
 
-                <a href="{{ route('profile.edit') }}" class="p-3 inline-block">{{ auth()->user()->email }}</a>
-            </div>
-            </li>
-            <li>
-                <form action="{{ route('logout') }}" method="POST" class="p-3 inline">
-                    @csrf
-                    <button type="submit">Log out</button>
-                </form>
-            </li>
-            @endauth
-            @guest
-            <li>
+    <div class="flex justify-center items-center space-x-2 mb-16">
+        <span class="text-sm text-gray-800 dark:text-gray-500">Light</span>
+        <label for="toggle" class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer duration-300 ease-in-out">
+           <div class="toggle-dot bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out dark:translate-x-3"></div>
+        </label>
+        <span class="text-sm text-gray-400 dark:text-white">Dark</span>
+        <input id="toggle" type="checkbox" class="hidden">
+     </div>
+
+     @guest
+     <nav class="mx-auto max-w-full mb-16 sm:py-4" aria-label="guest navigation">
+        <ul class="flex justify-center">
+            <li class="p-2 hover:border-b-2">
                 <a href="{{ route('login') }}" class="p-3">Login</a>
             </li>
-            <li>
+            <li class="p-2 hover:border-b-2">
                 <a href="{{ route('register') }}" class="p-3">Register</a>
             </li>
-            @endguest
+            </ul>
+    </nav>
+     @endguest
+     @auth
+    <nav class="flex justify-between max-w-full mb-16" aria-label="user navigation">
+        <ul class="flex flex-col sm:flex sm:flex-row sm:justify-center">
+            <li class="py-1 sm:pr-2 sm:pt-1 sm:pl-0 sm:py-2 hover:border-b-2">
+                <a href="{{ route('lists.index') }}">Lists</a>
+            </li>
+            <li class="py-1 sm:px-2 sm:pt-1 sm:py-2 hover:border-b-2">
+                <a href="{{ route('my-day') }}">My Day</a>
+            </li>
+            <li class="py-1 sm:pl-2 sm:pt-1 sm:py-2 hover:border-b-2">
+                <a href="{{ route('all-task') }}">All tasks</a>
+            </li>
+        </ul>
+        <ul class="flex flex-col sm:flex sm:flex-row sm:justify-center text-right ">
+            <li class="flex items-center hover:border-b-2 sm:pb -2">
+                <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->avatar }}">
+                <a href="{{ route('profile.edit') }}" class="pr-0 pl-1 ">Profile</a>
+            </li>
+            <li class="mt-1 pr-0 sm:mt-0 sm:pt-1 sm:pl-4 sm:py-2 hover:border-b-2 ">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="">Log out</button>
+                </form>
+            </li>
         </ul>
     </nav>
+    @endauth
     {{ $slot }}
-   <x-flash />
+    {{-- </div>
+   </div>
+</div> --}}
+<x-flash />
+<script>
+
+    let darkMode = localStorage.getItem('darkMode');
+
+    const darkModeToggle = document.querySelector('#toggle');
+    darkModeToggle.checked = (localStorage.getItem('isDarkMode') == true ? true : false)
+
+    const enableDarkMode = () => {
+    // 1. Add the class to the body
+    document.body.classList.add('dark');
+    // 2. Update darkMode in localStorage
+    localStorage.setItem('darkMode', 'enabled');
+    }
+
+    const disableDarkMode = () => {
+    // 1. Remove the class from the body
+    document.body.classList.remove('dark');
+    // 2. Update darkMode in localStorage
+    localStorage.setItem('darkMode', null);
+    }
+
+    // If the user already visited and enabled darkMode
+    // start things off with it on
+    if (darkMode === 'enabled') {
+    enableDarkMode();
+    }
+
+    // When someone clicks the button
+    darkModeToggle.addEventListener('click', () => {
+    // get their darkMode setting
+    darkMode = localStorage.getItem('darkMode');
+
+    // if it not current enabled, enable it
+    if (darkMode !== 'enabled') {
+        enableDarkMode();
+    // if it has been enabled, turn it off
+    } else {
+        disableDarkMode();
+    }
+    });
+</script>
 </body>
 </html>

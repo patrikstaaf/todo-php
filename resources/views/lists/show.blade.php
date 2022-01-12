@@ -1,47 +1,48 @@
 <x-layout title="{{$category->title}}">
 {{-- <x-layout title="{{auth()->user()->category->title}}"> --}}
     {{-- <div class="flex w-full justify-end px-4"> --}}
-    <div class="flex w-full justify-between px-4">
-        <a href="{{ route('lists.index') }}" class="p-3">< Back to lists</a>
-        <a href="{{ route('lists.tasks.create', $category) }}" class="mx-4 p-3 border border-green-500 ">Add task</a>
+    <div class="flex w-full justify-between">
+        <a href="{{ route('lists.index') }}" class=" p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">< Back to list</a>
+        {{-- <a href="{{ route('lists.tasks.create', $category) }}" class="p-3 mr-0 border border-green-500 ">Add task</a> --}}
+        <a href="{{ route('lists.tasks.create', $category) }}" class="p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">+ Add task</a>
 
     </div>
-   <div class="flex justify-center mx-auto w-full p-6">
+   <div class="flex justify-center mx-auto w-full">
     <div class="flex flex-col w-full">
-    <h1 class="w-full mb-6 font-bold text-center">{{$category->title}}</h1>
-
+    <h1 class="w-full my-6 font-semibold text-center">{{$category->title}}</h1>
 
     @forelse ($category->tasks as $task)
-    {{-- @forelse (auth()->user()->category->tasks as $task) --}}
     <div class="flex justify-between max-w-full my-3">
 
         <div class="flex items-center">
             <div class="flex flex-col">
-            <p>{{$task->title}}</p>
-            <p>{{$task->description}}</p>
-            <p>Due: {{$task->deadline}}</p>
+            <p class="font-semibold">{{$task->title}}</p>
+            <p class="text-sm italic">{{$task->description}}</p>
+            @if ($task->deadline != null)
+            <p class="text-sm italic">Due: {{$task->deadline}}</p>
+            @endif
             @if ($task->completed > 0)
-        <span style="color: green;">Completed: Yes</span>
+        <span class="text-sm italic">Completed: <span class="text-green-700 text-sm italic">Yes</span></span>
     @else
-        <span style="color: red;">Completed: No</span>
+        <span class="text-sm italic">Completed: <span class="text-red-700 text-sm italic">No</span></span>
     @endif
             </div>
         </div>
         <div class="flex items-center">
 
-<a href="{{ route('lists.tasks.edit', [$category, $task]) }}" class="p-3">Edit</a>
+<a href="{{ route('lists.tasks.edit', [$category, $task]) }}" class="p-2 hover:border-b-2">Edit</a>
 
     @can('delete', $task)
     <form action="{{ route('lists.tasks.destroy', [$category, $task]) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit" onclick="return confirm('Confirm, do you want to delete this task?')" class="p-3">Delete</button>
+    <button type="submit" onclick="return confirm('Confirm, do you want to delete this task?')" class="pl-3 pr-0 py-2 hover:border-b-2">Delete</button>
     </form>
     @endcan
     </div>
 
     </div>
-    <hr>
+    <hr class="mt-0 mb-6 w-24">
 @empty
 <div class="mx-auto">
     <p>No tasks yet.</p>

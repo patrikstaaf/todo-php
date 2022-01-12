@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('lists.index', [
-            'category' => Category::latest()->where('user_id', auth()->id())->paginate(10),
+            'category' => Category::latest()->where('user_id', auth()->id())->get(),
         ]);
     }
 

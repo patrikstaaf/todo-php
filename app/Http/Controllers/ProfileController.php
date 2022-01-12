@@ -17,13 +17,13 @@ class ProfileController extends Controller
         return view('profile.edit', ['user' => auth()->user()]);
     }
 
-    public function changepassword(Request $request, User $user)
+    public function changePassword(Request $request, User $user)
     {
-        $this->authorize('changepassword', $user);
+        $this->authorize('changePassword', $user);
 
         if (strcmp($request->get('current_password'), $request->get('new_password')) == 0) {
             return back()->with('success', 'New Password cannot be same as your current password.');
-        }
+        } // should have create an 'error' message design, but this will do for now...
 
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
