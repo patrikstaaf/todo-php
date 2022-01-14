@@ -33,6 +33,19 @@
                         </div>
                     @enderror
                 </div>
+                <div class="mb-4">
+                    <label for="category_id" class="text-slate-700 dark:text-slate-200">List</label>
+                    <select name="category_id" id="category_id" class="form-input mt-1 border-2 rounded p-4 w-full dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700 @error('title') border-red-300  @enderror" autofocus>
+                        @foreach ($categories as $cat)
+                            <option value="{{ $cat->id }}" {{ ($cat->id === $category->id) ? "selected" : "" }}>{{ $cat->title }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 <input type="checkbox" class="form-check-input mr-2" id="completed" name="completed" value="{{old('completed')}}" @if(old('completed', $task->completed)) checked @endif>
                 <label for="completed">Completed</label>
                 <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-3 mt-4 rounded font-medium w-full dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-50">Add</button>

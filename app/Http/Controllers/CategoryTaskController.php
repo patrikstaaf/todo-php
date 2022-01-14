@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
+use Auth;
+use Illuminate\Validation\Rule;
 
 class CategoryTaskController extends Controller
 {
@@ -35,6 +37,7 @@ class CategoryTaskController extends Controller
     {
         return view('tasks.edit', [
             'category' => $list,
+            'categories' => Auth::user()->lists,
             'task' => $task,
         ]);
     }
@@ -46,6 +49,12 @@ class CategoryTaskController extends Controller
             'description' => 'nullable|string|max:255',
             'deadline' => 'nullable|date',
             'completed' => 'nullable|boolean',
+            'category_id' => [
+                'required', 'string',
+                Rule::exists('categories', 'id')->where(function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })
+            ]
         ]);
 
         $task->update([
@@ -53,6 +62,7 @@ class CategoryTaskController extends Controller
             'description' => $request->description,
             'deadline' => $request->deadline,
             'completed' => $request->has('completed'),
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->route('lists.show', [$list->id])->with('success', 'Your task has been updated.');
