@@ -48,31 +48,47 @@ class CategoryTaskController extends Controller
 
     public function update(Request $request, Category $list, Task $task)
     {
-        $this->validate($request, [
-            'title' => 'required|string',
-            'description' => 'nullable|string|max:255',
-            'deadline' => 'nullable|date',
-            'completed' => 'nullable|boolean',
-            'category_id' => [
-                'required', 'string',
-                function ($attribute, $value, $fail) {
-                    if (
-                        Category::where('user_id', '=', auth()->user()->id)->where('id', '=', $value)->first() === null &&
-                        CategoryShare::where('user_id', '=', auth()->user()->id)->where('category_id', '=', $value)->first() === null
-                    ) {
-                        return $fail('The list is invalid.');
+        if ($task->user_id === auth()->user()->id) {
+            $this->validate($request, [
+                'title' => 'required|string',
+                'description' => 'nullable|string|max:255',
+                'deadline' => 'nullable|date',
+                'completed' => 'nullable|boolean',
+                'category_id' => [
+                    'required', 'string',
+                    function ($attribute, $value, $fail) {
+                        if (
+                            Category::where('user_id', '=', auth()->user()->id)->where('id', '=', $value)->first() === null &&
+                            CategoryShare::where('user_id', '=', auth()->user()->id)->where('category_id', '=', $value)->first() === null
+                        ) {
+                            return $fail('The list is invalid.');
+                        }
                     }
-                }
-            ]
-        ]);
+                ]
+            ]);
 
-        $task->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'deadline' => $request->deadline,
-            'completed' => $request->has('completed'),
-            'category_id' => $request->category_id
-        ]);
+            $task->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'deadline' => $request->deadline,
+                'completed' => $request->has('completed'),
+                'category_id' => $request->category_id
+            ]);
+        } else {
+            $this->validate($request, [
+                'title' => 'required|string',
+                'description' => 'nullable|string|max:255',
+                'deadline' => 'nullable|date',
+                'completed' => 'nullable|boolean'
+            ]);
+
+            $task->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'deadline' => $request->deadline,
+                'completed' => $request->has('completed')
+            ]);
+        }
 
         return redirect()->route('lists.show', [$list->id])->with('success', 'Your task has been updated.');
     }
