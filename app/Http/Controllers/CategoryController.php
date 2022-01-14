@@ -10,9 +10,15 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('lists.index', [
-            'category' => Category::latest()->where('user_id', auth()->id())->get(),
-        ]);
+        if (request()->has('lists') && request()->input('lists') === "shared") {
+            return view('lists.index', [
+                'category' => [],
+            ]);
+        } else {
+            return view('lists.index', [
+                'category' => Category::latest()->where('user_id', auth()->id())->get(),
+            ]);
+        }
     }
 
     public function create()
