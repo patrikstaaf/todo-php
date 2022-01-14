@@ -61,7 +61,9 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $list)
     {
-        $this->authorize('update', $list);
+        if (!$this->authorize('update', $list)->denied()) {
+            abort(401);
+        }
 
         $attributes = $request->validate(
             [

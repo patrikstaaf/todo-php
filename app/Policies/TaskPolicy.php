@@ -14,4 +14,9 @@ class TaskPolicy
     {
         return $user->id === $task->user_id;
     }
+
+    public function edit(User $user, Task $task)
+    {
+        return ($user->id === $list->user_id || CategoryShare::where('user_id', $user->id)->where('category_id', $list->id)->first() !== null)
+    }
 }

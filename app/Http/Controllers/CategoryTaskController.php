@@ -48,6 +48,10 @@ class CategoryTaskController extends Controller
 
     public function update(Request $request, Category $list, Task $task)
     {
+        if ($this->authorize('edit', auth()->user(), $task)->denied()) {
+            abort(401);
+        }
+
         if ($task->user_id === auth()->user()->id) {
             $this->validate($request, [
                 'title' => 'required|string',
@@ -95,7 +99,9 @@ class CategoryTaskController extends Controller
 
     public function destroy(Category $list, Task $task)
     {
-        $this->authorize('delete', $task);
+        if ($this->authorize('delete', $task)->denied()) {
+            abort(401);
+        }
 
         $task->delete();
 
