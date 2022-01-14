@@ -52,7 +52,10 @@ class CategoryController extends Controller
 
     public function edit(Category $list)
     {
-        return view('lists.edit', ['category' => $list]);
+        return view('lists.edit', [
+            'category' => $list,
+            'shares' => CategoryShare::where('category_id', $list->id)->get()
+        ]);
     }
 
     public function update(Request $request, Category $list)

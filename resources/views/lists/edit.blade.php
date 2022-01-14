@@ -15,7 +15,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="share" class="text-slate-700 dark:text-slate-200">Share list (press enter to add user)</label>
+                    <label for="share" class="text-slate-700 dark:text-slate-200">Share list</label>
                     <input type="email" name="share" id="share" placeholder="Enter email adress..." value="{{ old('share') ?? "" }}" class="form-input mt-1 border-2 rounded p-4 w-full dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700 @error('share') border-red-300  @enderror" autofocus>
                     @error('share')
                         <div class="text-red-500 mt-2 text-sm">
@@ -24,7 +24,9 @@
                     @enderror
                     <!-- TODO: Add list of users currently shared to -->
                     <div class="mt-3 flex flex-wrap">
-                        <div class="cursor-pointer mb-5 mr-5 px-3 py-3 text-slate-700 dark:text-slate-200 dark:bg-gray-800 dark:hover:bg-gray-700 border-2 rounded dark:border-0">theo01sandell@gmail.com <span class="pl-3">X</span></div>
+                        @foreach ($shares as $share)
+                            <a href="{{ route("share.delete", $share->id) }}" class="cursor-pointer mb-5 mr-5 px-3 py-3 text-slate-700 dark:text-slate-200 dark:bg-gray-800 dark:hover:bg-gray-700 border-2 rounded dark:border-0">{{ $share->user->email }} <span class="pl-3">X</span></a>
+                        @endforeach
                     </div>
                 </div>
                 <div>
