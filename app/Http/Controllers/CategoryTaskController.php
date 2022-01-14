@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\CategoryShare;
 use Auth;
 use Illuminate\Validation\Rule;
 
@@ -38,6 +39,9 @@ class CategoryTaskController extends Controller
         return view('tasks.edit', [
             'category' => $list,
             'categories' => Auth::user()->lists,
+            'shared_categories' => CategoryShare::where('category_id', $list->id)->where('user_id', auth()->user()->id)->get()->map(function ($item, $key) {
+                return $item->list;
+            }),
             'task' => $task,
         ]);
     }
@@ -51,9 +55,14 @@ class CategoryTaskController extends Controller
             'completed' => 'nullable|boolean',
             'category_id' => [
                 'required', 'string',
-                Rule::exists('categories', 'id')->where(function ($query) {
-                    return $query->where('user_id', '=', Auth::user()->id);
-                })
+                function ($attribute, $value, $fail) {
+                    if (
+                        Category::where('user_id', '=', auth()->user()->id)->where('id', '=', $value)->first() === null &&
+                        CategoryShare::where('user_id', '=', auth()->user()->id)->where('category_id', '=', $value)->first() === null
+                    ) {
+                        return $fail('The list is invalid.');
+                    }
+                }
             ]
         ]);
 

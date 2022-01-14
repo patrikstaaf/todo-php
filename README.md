@@ -127,3 +127,7 @@ Share with other user:
 Add user emails to list.
 On list page, choose between my lists and shared lists.
 Share table in db, list_id and user_id. ID of user that list should be shared to.
+
+TODO:
+If user has list shared to them, they can not mark task in that list as complete.
+They can not see list and therefore not submit the form.

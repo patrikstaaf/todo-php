@@ -1,3 +1,5 @@
+
+
 <x-layout title="Edit Task: {{ $task->title }}">
     <div class="flex justify-center mx-auto w-full">
         <div class="flex flex-col w-full">
@@ -38,6 +40,10 @@
                     <select name="category_id" id="category_id" class="form-input mt-1 border-2 rounded p-4 w-full dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700 @error('title') border-red-300  @enderror" autofocus>
                         @foreach ($categories as $cat)
                             <option value="{{ $cat->id }}" {{ ($cat->id === $category->id) ? "selected" : "" }}>{{ $cat->title }}</option>
+                        @endforeach
+
+                        @foreach ($shared_categories as $cat)
+                            <option value="{{ $cat->id }}" {{ ($cat->id === $category->id) ? "selected" : "" }}>{{ $cat->title }} [Shared]</option>
                         @endforeach
                     </select>
                     @error('category_id')
