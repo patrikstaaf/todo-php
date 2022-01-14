@@ -67,4 +67,9 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
     {
         return $this->hasMany(Category::class);
     }
+
+    public function sharedLists()
+    {
+        return $this->hasMany(CategoryShare::class, 'user_id', 'id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CategoryShare;
 use App\Models\Task;
 
 class CategoryController extends Controller
@@ -12,7 +13,7 @@ class CategoryController extends Controller
     {
         if (request()->has('lists') && request()->input('lists') === "shared") {
             return view('lists.index', [
-                'category' => [],
+                'shared' => auth()->user()->sharedLists
             ]);
         } else {
             return view('lists.index', [
@@ -58,11 +59,19 @@ class CategoryController extends Controller
     {
         $this->authorize('update', $list);
 
-        $attributes = $request->validate([
-            'title' => 'required|string',
-        ]);
+        $attributes = $request->validate(
+            [
+                'title' => 'required|string',
+                'share' => 'nullable|email|string|exists:users,email'
+            ],
+            [
+                'exists' => "This user does not exist"
+            ]
+        );
 
-        $list->update($attributes);
+        $list->update([
+            'title' => $attributes['title']
+        ]);
 
         return redirect('lists')->with('success', 'List title updated.');
     }
