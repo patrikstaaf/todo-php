@@ -9,6 +9,11 @@ class CategoryShare extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'user_id'
+    ];
+
     public function list()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');

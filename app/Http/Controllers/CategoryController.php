@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\CategoryShare;
 use App\Models\Task;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -71,6 +72,13 @@ class CategoryController extends Controller
                 'exists' => "This user does not exist"
             ]
         );
+
+        if ($request->has('share')) {
+            $share = new CategoryShare;
+            $share->user_id = User::where('email', $attributes['share'])->first()->id;
+            $share->category_id = $list->id;
+            $share->save();
+        }
 
         $list->update([
             'title' => $attributes['title']
