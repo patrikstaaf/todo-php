@@ -76,7 +76,7 @@ class CategoryController extends Controller
         );
 
         if ($request->has('share')) {
-            $share = new CategoryShare;
+            $share = new CategoryShare();
             $share->user_id = User::where('email', $attributes['share'])->first()->id;
             $share->category_id = $list->id;
             $share->save();
