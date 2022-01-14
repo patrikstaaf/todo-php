@@ -48,7 +48,8 @@ class CategoryTaskController extends Controller
 
     public function update(Request $request, Category $list, Task $task)
     {
-        if ($this->authorize('edit', auth()->user(), $task)->denied()) {
+        //TODO: move to policy?
+        if (auth()->user()->id !== $task->user_id && CategoryShare::where('user_id', auth()->user()->id)->where('category_id', $list->id)->first() === null) {
             abort(401);
         }
 

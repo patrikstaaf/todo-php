@@ -123,7 +123,4 @@ As a user I'm able to add share a list of tasks with another user.
 
 As a user I'm able to mark all tasks in a list as completed with one click.
 
-Share with other user:
-Add user emails to list.
-On list page, choose between my lists and shared lists.
-Share table in db, list_id and user_id. ID of user that list should be shared to.
+TODO: User that has list shared to them can not see emails shared to.
