@@ -46,6 +46,10 @@ CRUD with user login system. Built with Laravel 8.
 
 -   As a user I'm able to reset my password via email.
 
+-   As a user I'm able to move a task from one list to another.
+
+-   As a user I'm able to share lists with other users.
+
 ## Installation
 
 1. Clone this repo
