@@ -9,10 +9,19 @@
         body{
             font-family: sans-serif;
         }
+
+        h4{
+            margin: 0;
+        }
+
+        h1{
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to TODO.</h1>
+    <h4>No fuss or distractions, get sh*t done.</h4>
     <p>Thanks for signing up to the best TODO list website.</p>
     <p>Next steps in your new organized life:</p>
     <ol>
