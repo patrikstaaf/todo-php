@@ -54,6 +54,8 @@ CRUD with user login system. Built with Laravel 8.
 
 -   As a user I'm able to mark all tasks in a list as completed with one click.
 
+-   As a user I'm able to read a welcome email when I've created a new account.
+
 ## Installation
 
 1. Clone this repo
@@ -119,7 +121,7 @@ Tested by the following people:
 
 As a user I'm able to move a task from one list to another. :white_check_mark:
 
-As a user I'm able to read a welcome email when I've created a new account.
+As a user I'm able to read a welcome email when I've created a new account. :white_check_mark:
 
 As a user I'm able to search for tasks. :white_check_mark:
 

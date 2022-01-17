@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Mail\WelcomeMail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Mail;
 
 class User extends Authenticatable // Unguarded through the AppServiceProver
 {
@@ -71,5 +73,14 @@ class User extends Authenticatable // Unguarded through the AppServiceProver
     public function sharedLists()
     {
         return $this->hasMany(CategoryShare::class, 'user_id', 'id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::created(function ($model) {
+            Mail::to($model->email)->send(new WelcomeMail());
+        });
     }
 }
