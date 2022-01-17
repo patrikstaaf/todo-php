@@ -123,6 +123,6 @@ As a user I'm able to add hashtags to tasks and list all tasks with an specific 
 
 As a user I'm able to add checklist to tasks.
 
-As a user I'm able to add share a list of tasks with another user.
+As a user I'm able to add share a list of tasks with another user. :white_check_mark:
 
 As a user I'm able to mark all tasks in a list as completed with one click.
