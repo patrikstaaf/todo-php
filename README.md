@@ -122,5 +122,3 @@ As a user I'm able to add checklist to tasks.
 As a user I'm able to add share a list of tasks with another user.
 
 As a user I'm able to mark all tasks in a list as completed with one click.
-
-TODO: User that has list shared to them can not see emails shared to.
