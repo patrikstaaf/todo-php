@@ -11,9 +11,9 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
-    public function delete(User $user, Task $task)
+    public function delete(User $user, Task $task, Category $category)
     {
-        return $user->id === $task->user_id;
+        return ($user->id === $task->user_id || CategoryShare::where('user_id', $user->id)->where('category_id', $category->id)->first() !== null);
     }
 
     public function edit(User $user, Task $task, Category $category)

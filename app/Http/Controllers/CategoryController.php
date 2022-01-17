@@ -75,7 +75,7 @@ class CategoryController extends Controller
             ]
         );
 
-        if ($request->has('share')) {
+        if ($request->has('share') && $request->filled('share')) {
             $share = new CategoryShare();
             $share->user_id = User::where('email', $attributes['share'])->first()->id;
             $share->category_id = $list->id;
@@ -86,7 +86,7 @@ class CategoryController extends Controller
             'title' => $attributes['title']
         ]);
 
-        return redirect('lists')->with('success', 'List title updated.');
+        return redirect('lists')->with('success', 'List updated.');
     }
 
     public function destroy(Category $list)

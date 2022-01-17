@@ -100,7 +100,7 @@ class CategoryTaskController extends Controller
 
     public function destroy(Category $list, Task $task)
     {
-        if ($this->authorize('delete', $task)->denied()) {
+        if ($this->authorize('delete', $task, $list)->denied()) {
             abort(401);
         }
 

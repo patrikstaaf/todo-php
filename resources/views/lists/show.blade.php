@@ -23,7 +23,7 @@
             </div>
             <div class="flex items-center">
                 <a href="{{ route('lists.tasks.edit', [$category, $task]) }}" class="p-2 border-transparent border-b-2 hover:border-b-2 hover:border-slate-200">Edit</a>
-                @can('delete', $task)
+                @can('delete', Auth::user(), $task, $category)
                 <form action="{{ route('lists.tasks.destroy', [$category, $task]) }}" method="POST">
                 @csrf
                 @method('DELETE')
