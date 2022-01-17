@@ -23,7 +23,7 @@ class CategoryPolicy
 
     public function update(User $user, Category $list)
     {
-        return $user->id === $list->user_id;
+        return ($user->id === $list->user_id || CategoryShare::where('user_id', $user->id)->where('category_id', $list->id)->first() !== null);
     }
 
     public function delete(User $user, Category $list)

@@ -48,7 +48,11 @@ CRUD with user login system. Built with Laravel 8.
 
 -   As a user I'm able to move a task from one list to another.
 
--   As a user I'm able to share lists with other users.
+-   As a user I'm able to add share a list of tasks with another user.
+
+-   As a user I'm able to search for tasks.
+
+-   As a user I'm able to mark all tasks in a list as completed with one click.
 
 ## Installation
 
@@ -125,4 +129,4 @@ As a user I'm able to add checklist to tasks.
 
 As a user I'm able to add share a list of tasks with another user. :white_check_mark:
 
-As a user I'm able to mark all tasks in a list as completed with one click.
+As a user I'm able to mark all tasks in a list as completed with one click. :white_check_mark:

@@ -36,8 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::resource('lists', CategoryController::class);
     Route::resource('lists.tasks', CategoryTaskController::class)->except('show', 'index');
-
     Route::get('/share/{share}/delete', [ShareController::class, 'delete'])->name('share.delete');
-
     Route::get('/search', [SearchController::class, 'show'])->name('search');
+    Route::get('/lists/{list}/complete-all', [CategoryController::class, 'completeAll'])->name('lists.completeAll');
 });

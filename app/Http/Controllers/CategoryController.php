@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\CategoryShare;
 use App\Models\Task;
 use App\Models\User;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -96,5 +97,17 @@ class CategoryController extends Controller
         $list->delete();
 
         return back()->with('success', 'List deleted.');
+    }
+
+    public function completeAll(Category $list)
+    {
+        $this->authorize('update', $list);
+        foreach ($list->tasks as $task) {
+            $task->update([
+                'completed' => true
+            ]);
+        }
+
+        return redirect()->back();
     }
 }

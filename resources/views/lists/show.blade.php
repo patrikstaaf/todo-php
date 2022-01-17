@@ -1,7 +1,10 @@
 <x-layout title="{{$category->title}}">
     <div class="flex w-full justify-between">
         <a href="{{ route('lists.index') }}" class="p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">< Back to list</a>
-        <a href="{{ route('lists.tasks.create', $category) }}" class="p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">+ Add task</a>
+        <div class="flex">
+            <a href="{{ route('lists.completeAll', $category) }}" class="mr-4 p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">Mark all as complete</a>
+            <a href="{{ route('lists.tasks.create', $category) }}" class="p-3 rounded border-2 dark:border-0 dark:bg-gray-800 dark:hover:bg-gray-700">+ Add task</a>
+        </div>
     </div>
     <div class="flex flex-col w-full">
         <h1 class="w-full my-6 font-semibold overflow-auto text-center">{{$category->title}}</h1>
