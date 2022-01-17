@@ -117,7 +117,7 @@ As a user I'm able to move a task from one list to another. :white_check_mark:
 
 As a user I'm able to read a welcome email when I've created a new account.
 
-As a user I'm able to search for tasks.
+As a user I'm able to search for tasks. :white_check_mark:
 
 As a user I'm able to add hashtags to tasks and list all tasks with an specific hashtag.
 

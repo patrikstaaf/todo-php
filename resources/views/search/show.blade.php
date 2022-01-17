@@ -39,7 +39,11 @@
                 <hr class="mt-0 mb-6 w-24">
                 @empty
                 <div class="mx-auto">
-                    <p>No results found...</p>
+                    @if(request()->has('q') && request()->filled('q'))
+                        <p>No results found...</p>
+                    @else
+                        <p>Please enter a search term...</p>
+                    @endif
                 </div>
                 @endforelse
             </div>
