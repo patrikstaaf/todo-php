@@ -10,6 +10,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryTaskController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AllTaskController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShareController;
 
 Route::view('/', 'home');
 
@@ -34,4 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::resource('lists', CategoryController::class);
     Route::resource('lists.tasks', CategoryTaskController::class)->except('show', 'index');
+    Route::get('/share/{share}/delete', [ShareController::class, 'delete'])->name('share.delete');
+    Route::get('/search', [SearchController::class, 'show'])->name('search');
+    Route::get('/lists/{list}/complete-all', [CategoryController::class, 'completeAll'])->name('lists.completeAll');
 });

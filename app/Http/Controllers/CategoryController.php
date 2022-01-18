@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CategoryShare;
 use App\Models\Task;
+use App\Models\User;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        return view('lists.index', [
-            'category' => Category::latest()->where('user_id', auth()->id())->get(),
-        ]);
+        if (request()->has('lists') && request()->input('lists') === "shared") {
+            return view('lists.index', [
+                'shared' => auth()->user()->sharedLists
+            ]);
+        } else {
+            return view('lists.index', [
+                'category' => Category::latest()->where('user_id', auth()->id())->get(),
+            ]);
+        }
     }
 
     public function create()
@@ -45,20 +54,40 @@ class CategoryController extends Controller
 
     public function edit(Category $list)
     {
-        return view('lists.edit', ['category' => $list]);
+        return view('lists.edit', [
+            'category' => $list,
+            'shares' => CategoryShare::where('category_id', $list->id)->get()
+        ]);
     }
 
     public function update(Request $request, Category $list)
     {
-        $this->authorize('update', $list);
+        if ($this->authorize('update', $list)->denied()) {
+            abort(401);
+        }
 
-        $attributes = $request->validate([
-            'title' => 'required|string',
+        $attributes = $request->validate(
+            [
+                'title' => 'required|string',
+                'share' => 'nullable|email|string|exists:users,email'
+            ],
+            [
+                'exists' => "This user does not exist"
+            ]
+        );
+
+        if ($request->has('share') && $request->filled('share')) {
+            $share = new CategoryShare();
+            $share->user_id = User::where('email', $attributes['share'])->first()->id;
+            $share->category_id = $list->id;
+            $share->save();
+        }
+
+        $list->update([
+            'title' => $attributes['title']
         ]);
 
-        $list->update($attributes);
-
-        return redirect('lists')->with('success', 'List title updated.');
+        return redirect('lists')->with('success', 'List updated.');
     }
 
     public function destroy(Category $list)
@@ -68,5 +97,17 @@ class CategoryController extends Controller
         $list->delete();
 
         return back()->with('success', 'List deleted.');
+    }
+
+    public function completeAll(Category $list)
+    {
+        $this->authorize('update', $list);
+        foreach ($list->tasks as $task) {
+            $task->update([
+                'completed' => true
+            ]);
+        }
+
+        return redirect()->back();
     }
 }
