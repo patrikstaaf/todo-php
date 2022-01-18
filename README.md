@@ -116,19 +116,3 @@ Tested by the following people:
 1. Theo Sandell
 2. Neo Lejondahl
 3. Albin Andersson
-
-# Possible features
-
-As a user I'm able to move a task from one list to another. :white_check_mark:
-
-As a user I'm able to read a welcome email when I've created a new account. :white_check_mark:
-
-As a user I'm able to search for tasks. :white_check_mark:
-
-As a user I'm able to add hashtags to tasks and list all tasks with an specific hashtag.
-
-As a user I'm able to add checklist to tasks.
-
-As a user I'm able to add share a list of tasks with another user. :white_check_mark:
-
-As a user I'm able to mark all tasks in a list as completed with one click. :white_check_mark:
