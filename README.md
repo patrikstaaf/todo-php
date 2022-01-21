@@ -2,7 +2,7 @@
 
 # Todo-list app
 
-CRUD with user login system. Built with Laravel 8.
+CRUD with user login. Built with Laravel 8.
 
 Live: [https://patrikstaaf.se/todo-php/](https://patrikstaaf.se/todo-php/)
 
@@ -51,44 +51,18 @@ Live: [https://patrikstaaf.se/todo-php/](https://patrikstaaf.se/todo-php/)
 
 ## Installation
    
-   1. Clone this repo
-      ```bash
+    
       git clone https://github.com/patrikstaaf/todo-php
       cd todo-php
-      ```
-2. Open the project in your text editor.
-3. Create an .env file
-      ```bash
       cp .env.example .env
-      ```
-    - Open the .env file and add the database name, username and password. Make sure MAIL_MAILER in .env is = log, without this the reset password will not work.
-    - Close the .env file
-4. Install dependencies for php and node.js
-      ```bash
       composer install
       npm install
-      ```
-5. Generate application key.
-      ```bash
       php artisan key:generate
-      ```
-6. Create symbolic links for uploads.
-      ```bash
       php artisan storage:link
-      ```
-7. Run migrations to create database structure.
-      ```bash
       php artisan migrate:fresh
-      ```
-8. Start TailwindCSS build process
-      ```bash
       npm run watch
-      ```
-9. Run the php server.
-      ```bash
       php artisan serve
-      ```
-10. You´re all set, now visit the site at [http://localhost:8000](http://localhost:8000).
+
 
 ## Code Review
 
