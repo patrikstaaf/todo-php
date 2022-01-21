@@ -71,7 +71,7 @@
         let darkMode = localStorage.getItem('darkMode');
         const darkModeToggle = document.querySelector('#toggle');
 
-        darkModeToggle.checked = (localStorage.getItem('isDarkMode') == true ? true : false)
+        // darkModeToggle.checked = (localStorage.getItem('isDarkMode') == true ? true : false)
 
         const enableDarkMode = () => {
         document.body.classList.add('dark');
