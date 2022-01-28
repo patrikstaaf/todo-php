@@ -83,3 +83,9 @@ Tested by the following people:
 1. Theo Sandell
 2. Neo Lejondahl
 3. Albin Andersson
+
+## Wunderlist+
+
+Follow-up assignment to add features to a classmate's project, done by [Theo Sandell](https://github.com/theo0165).
+Link to the pull request: [pull request](https://github.com/patrikstaaf/todo-php/pull/2)
+Link to the branch: [branch](https://github.com/patrikstaaf/todo-php/tree/wunderlist+)
